@@ -3,7 +3,7 @@
 xtermpretty="xterm -b 10 -fg white -bg black -fa 'Monospace' -fs 10"
 
 sourcepath=$( dirname "${BASH_SOURCE[0]}" )
-cd ./sourcepath/frontend
+cd $sourcepath/frontend
 
 $xtermpretty -e /bin/bash -c "npx react-native start --verbose" &
 sleep 1

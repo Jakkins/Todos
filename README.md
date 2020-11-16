@@ -7,5 +7,5 @@
 
 automatic launch
 ```bash
-$ loader 
+$ loader.sh
 ```
