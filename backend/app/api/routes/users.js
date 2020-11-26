@@ -14,15 +14,16 @@ router.post('/signup', (req, res, next) => {
     UsersModel.findOne({username: req.body.username}).exec()
     .then(user => {
         if(user) return myutils.error(res, 409, 'username exists') // 409, 422
-        // else the username doesn't exist
         bcrypt.hash(req.body.password, 10, (err, hash) => {
             if(err) return myutils.error(res, 500, 'data missing on sign up')
             const newUser = new UsersModel ({
                 _id: new mongoose.Types.ObjectId(),
                 username: req.body.username,
-                password: hash
+                password: hash,
+                IP: req.ip
             })
-            newUser.validate( (err) => { // overkill
+            // validate before save is overkill
+            newUser.validate( (err) => {
                 if(err) return myutils.error(res, 500, err.message)
                 newUser.save()
                 .then(result => myutils.message(res, 201, 'user created') )
@@ -37,29 +38,28 @@ router.post('/signup', (req, res, next) => {
 router.post('/login', (req, res, next) => {
     UsersModel.findOne({username: req.body.username}).exec()
     .then(user => {
-        if(user) { // exists
-            bcrypt.compare(req.body.password, user.password)
-            .then(result => {
-                if(result) { // if TRUE, the hashes are equals
-                    // 60*60 = 3600 seconds = "1h"
-                    const token = jwt.sign(
-                        { username: user.username },
-                        fs.readFileSync('./keys/key.pem'),
-                        { 
-                            algorithm: 'RS256',
-                            expiresIn: 60 * 60
-                        }
-                    )
-                    res.status(201).json({
-                        message: 'logged',
-                        token: token
-                    })
+        if(!user) return myutils.message(res, 409, 'username or password incorrect') // 409, 422
+        // if exists
+        bcrypt.compare(req.body.password, user.password)
+        .then(result => {
+            if(!result) return myutils.message(res, 409, 'username or password incorrect')
+            // if TRUE, the hashes are equals
+            // 60*60 = 3600 seconds = "1h"
+            const token = jwt.sign(
+                { username: user.username },
+                fs.readFileSync('./keys/key.pem'),
+                { 
+                    algorithm: 'RS256',
+                    expiresIn: 60 * 60
                 }
-                else myutils.message(res, 409, 'username or password incorrect')
+            )
+            res.status(201).json({
+                message: 'logged',
+                token: token
             })
-            .catch(err => myutils.message(res, 409, 'username or password incorrect') )
-        }
-        else myutils.message(res, 409, 'username or password incorrect') // 409, 422
+            console.log(req.body.username + ' with ' + req.ip + ' successfully logged in')
+        })
+        .catch(err => myutils.message(res, 409, 'username or password incorrect') )
     })
     .catch(err => myutils.error(res, 500, err))
 })

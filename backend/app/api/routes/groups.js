@@ -12,4 +12,11 @@ router.get('/:id', (req, res, next) => {
     })
 })
 
+router.get('/:groupId', (req, res, next) => {
+    if(req.userData) {
+        
+    }
+    else myutils.message(res, 500, 'login first')
+})
+
 module.exports = router;

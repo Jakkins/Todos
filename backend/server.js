@@ -9,8 +9,6 @@ const options = {
     cert: fs.readFileSync('./keys/cert.pem')
 }
 
-// https://127.0.0.1:3000
-// the listener of the server is executed whenever it got a new request
 const server = https.createServer(options, app)
 
 server.listen(port, () => {

@@ -11,12 +11,10 @@ $xtermpretty -hold -e /bin/bash -c "npx react-native run-android --verbose" &
 
 cd ../backend
 node server.js; cd ..
+# npm start; cd .. return to /Todos/ after that "npm start" finished
+# npm start; cd ..
 
 #############################
-## Bhooo
-##
-## 
-##
 ## /bin/sh -c ls
 ## if [ "$DISPLAY" != "" ]; then
 ##    if [ "$1" != "--rex" -a "$2" != "--rex" ]; then

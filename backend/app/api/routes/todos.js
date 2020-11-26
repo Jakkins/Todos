@@ -7,7 +7,6 @@ const Todos = require('./../models/todos')
 
 // ----- PERSONAL -----
 router.get('/', (req, res, next) => {
-    console.log(req.userData)
     if(req.userData) {
         Todos.find({ 
             usernameCreator: req.headers.username,
@@ -21,6 +20,9 @@ router.get('/', (req, res, next) => {
     else myutils.message(res, 500, 'login first')
 })
 
+/*
+    - description
+*/
 router.post('/', (req, res) => {
     if(req.userData) {
         const newTodos = new Todos ({
@@ -37,15 +39,6 @@ router.post('/', (req, res) => {
             }))
             .catch(err => myutils.error(res, 500, 'error on creating user'))
         })
-    }
-    else myutils.message(res, 500, 'login first')
-})
-
-// ----- GROUP -----
-
-router.get('/:groupId', (req, res, next) => {
-    if(req.userData) {
-        
     }
     else myutils.message(res, 500, 'login first')
 })

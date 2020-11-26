@@ -2,14 +2,15 @@ const mongoose = require('mongoose')
 
 /*
     one todo has:
-        - pk (_id)
+        - _id
         - description
         - groupId
         - usernameCreator
+        - date
 */
 const todosSchema = new mongoose.Schema({
     _id: { 
-        type: String, 
+        type: String,
         required: true
     },
     description: { 
