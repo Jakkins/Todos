@@ -31,7 +31,7 @@ app.use(parser.urlencoded({ extended: true }))
 app.use(parser.json())
 
 // ----- LOG SYSTEM -----
-app.use(morgan('dev')) // log system, should be before all the others uses
+app.use(morgan(':remote-addr :method :http-version :url :status :res[content-length] - :response-time ms')) // log system, should be before all the others uses
 
 // ----- HANDLING REST API -----
 app.use('/user', usersRoutes)    // https://localhost/user/

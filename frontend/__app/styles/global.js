@@ -82,40 +82,80 @@ export const LogInCSS = StyleSheet.create({
 })
 
 export const TodoScreenCSS = StyleSheet.create({
+  /* SCREEN */
   body: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
   },
   button: {
     padding: 10,
-    width: '90%',
-    marginBottom: 10,
-    flexGrow: 0.001,
     backgroundColor: '#BF360C',
     borderColor: '#BF360C',
     borderWidth: 2,
     borderRadius: 8,
+    margin: 10
   },
+  /* CARDS */
+  ScrollView: {
+    width: '100%',
+  },
+  contentContainerStyle: {
+    margin: 3,
+  },
+  card_view: {
+    flexDirection: 'row',
+    alignItems: 'center', /* y-axis alignment */
+    margin: 1,
+    borderRadius: 2,
+    borderColor: 'black',
+    borderWidth: 0.1,
+  },
+  card_text: {
+    textAlign: 'left',
+    flex: 5,
+    fontFamily: 'Roboto',
+    fontSize: 18,
+    margin: 10,
+  },
+  card_button: {
+    flex: 0.2,
+    justifyContent: 'flex-end',
+    padding: 10,
+    margin: 5,
+  },
+  card_button_icon: {
+    fontSize: 20,
+    textAlign: 'center',
+    fontFamily: 'Roboto',
+    fontWeight: 'bold',
+  },
+  /* MODAL */
   modal_center_view: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0.9)'
   },
+  modal_body: {
+    backgroundColor: 'rgba(255,255,255,0.9)',
+  },
+  modal_textinput: {
+    textAlign: 'center',
+    margin: 10,
+    borderWidth: 3,
+    borderColor: '#BF360C',
+    borderRadius: 16,
+  },
   modal_button_view: {
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    backgroundColor: "white",
-    width: '85%',
-    height: '50%',
   },
   modal_button: {
     alignSelf: 'flex-end',
     padding: 10,
     margin: 10,
-    width: '30%',
+    width: '40%',
     flexGrow: 0.001,
     backgroundColor: '#BF360C',
     borderWidth: 2,

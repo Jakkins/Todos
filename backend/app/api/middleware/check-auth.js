@@ -31,6 +31,6 @@ module.exports = (req, res, next) => {
     }
     catch (err) {
         console.log('AUTH ERROR: ' + req.headers.username + " - " + err.message)
-        myutils.message(res, 500, 'invalid or expired token')
+        return myutils.message(res, 500, 'invalid or expired token')
     }
 }

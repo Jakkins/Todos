@@ -24,7 +24,10 @@ export function checkInternetConnection(isSignedIn, setSigned) {
         
         checkPortAndValidateToken()
         .then( result => {
-            if(result === 'invalid') Alert.alert('Invalid or expired token.\nLogin again');
+            if(result === 'invalid') {
+                setSigned(false)
+                Alert.alert('Invalid or expired token.\nLogin again')
+            }
             else setSigned(true)
         })
         .catch( (msg) => Alert.alert(msg))
@@ -44,7 +47,7 @@ function checkPortAndValidateToken() {
                     resolve('invalid')
                 else resolve('valid')
             })
-            .catch( (e) => { })
+            .catch( (e) => { reject('Server not reachable') })
         })
 
         setTimeout(reject, 3000) // this check the server

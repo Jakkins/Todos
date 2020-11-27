@@ -2,24 +2,18 @@
 
 xtermpretty="xterm -b 10 -fg white -bg black -fa 'Monospace' -fs 10"
 
+# LAUNCH emulator (emulator -list-avds)
+$xtermpretty -e /bin/bash -c "emulator -avd Pixel_2_API_30" &
+
+# LAUNCH metro server
 sourcepath=$( dirname "${BASH_SOURCE[0]}" )
 cd $sourcepath/frontend
+$xtermpretty -hold -e /bin/bash -c "npx react-native start --verbose" & 
 
-$xtermpretty -e /bin/bash -c "npx react-native start --verbose" &
-sleep 1
-$xtermpretty -hold -e /bin/bash -c "npx react-native run-android --verbose" &
+# LAUNCH react native app system [hardcore: use adb to install the app](adb shell input keyevent 82)
+npx react-native run-android --verbose
 
-cd ../backend
-node server.js; cd ..
-# npm start; cd .. return to /Todos/ after that "npm start" finished
-# npm start; cd ..
 
-#############################
-## /bin/sh -c ls
-## if [ "$DISPLAY" != "" ]; then
-##    if [ "$1" != "--rex" -a "$2" != "--rex" ]; then
-##       konsole --nofork -e /bin/sh $0 --rex 2>/dev/null || xterm -e /bin/sh $0 --rex 2>/dev/null || /bin/sh $0 --rex 2>/dev/null
-##       exit
-##    fi
-## fi
-#############################
+# LAUNCH backend server
+# cd ../backend
+# $xtermpretty -e /bin/bash -c "node server.js" &

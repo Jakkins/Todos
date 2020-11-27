@@ -20,16 +20,13 @@ router.get('/', (req, res, next) => {
     else myutils.message(res, 500, 'login first')
 })
 
-/*
-    - description
-*/
 router.post('/', (req, res) => {
     if(req.userData) {
         const newTodos = new Todos ({
             _id: new mongoose.Types.ObjectId(),
             description: req.body.description,
             groupId: 'personal',
-            usernameCreator: req.body.username
+            usernameCreator: req.headers.username
         })
         newTodos.validate( (err) => {
             if(err) return myutils.error(res, 500, err.message)
@@ -39,6 +36,27 @@ router.post('/', (req, res) => {
             }))
             .catch(err => myutils.error(res, 500, 'error on creating user'))
         })
+    }
+    else myutils.message(res, 500, 'login first')
+})
+
+router.delete('/:id', (req, res) => {
+    if(req.userData) {
+        Todos.deleteOne({"_id": req.params.id}).exec()
+        .then(result => {
+            console.log(result)
+            if(result.deletedCount > 0) {
+                res.status(201).json({
+                    message: 'todo deleted'
+                })
+            }
+            else {
+                res.status(404).json({
+                    message: 'todo not deleted'
+                })
+            }
+        })
+        .catch(err => myutils.error(res, 500, err))
     }
     else myutils.message(res, 500, 'login first')
 })
