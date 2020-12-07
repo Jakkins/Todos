@@ -11,8 +11,8 @@ cd $sourcepath/frontend
 $xtermpretty -hold -e /bin/bash -c "npx react-native start --verbose" & 
 
 # LAUNCH react native app system [hardcore: use adb to install the app](adb shell input keyevent 82)
+# cd android && ./gradlew app:installDebug -PreactNativeDevServerPort=8081
 npx react-native run-android --verbose
-
 
 # LAUNCH backend server
 # cd ../backend

@@ -5,7 +5,7 @@ import {checkInternetConnection} from './myutils/checkServerConnection'
 import LogInRoutes from './routes/LogInRoutes';
 import HomeRoutes from './routes/HomeRoutes';
 
-const serverIP = '10.0.2.2'
+const serverIP = '192.168.1.100'
 const port = 3000
 
 let serverJson = {
@@ -14,18 +14,15 @@ let serverJson = {
   url: 'http://'+ serverIP + ':' + port,
 }
 
+AsyncStorage.setItem('server', JSON.stringify(serverJson))
+
 function App() {
-  const [isSignedIn, setSigned] = useState(false);
-  AsyncStorage.setItem('server', JSON.stringify(serverJson))
-  .then( () => {
-    checkInternetConnection(isSignedIn, setSigned)
-  })
+  const [isSignedIn, setSigned] = useState(false)
+  checkInternetConnection(isSignedIn, setSigned)
 
   return (
     <NavigationContainer>
-      {isSignedIn ? ( 
-      <HomeRoutes />
-      ) : (
+      {isSignedIn ? <HomeRoutes /> : (
         <LogInRoutes isSignedIn={isSignedIn} setSigned={setSigned} />
       )}
     </NavigationContainer>

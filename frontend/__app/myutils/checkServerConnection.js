@@ -30,7 +30,11 @@ export function checkInternetConnection(isSignedIn, setSigned) {
             }
             else setSigned(true)
         })
-        .catch( (msg) => Alert.alert(msg))
+        .catch( (msg) => {
+            if(msg == null)  Alert.alert('Can\'t connect to the server')
+            else Alert.alert(msg)
+        })
+
     })
 };
 
@@ -39,7 +43,7 @@ function checkPortAndValidateToken() {
     return new Promise((resolve, reject) => {
         Keychain.getGenericPassword()
         .then( option => {
-            if(!option) reject('Login please')
+            if(!option) reject('Login please') // token not saved
             gettodos(option.password, option.username)
             .then( res => { return res.json() })
             .then( json => {
@@ -47,9 +51,9 @@ function checkPortAndValidateToken() {
                     resolve('invalid')
                 else resolve('valid')
             })
-            .catch( (e) => { reject('Server not reachable') })
+            .catch( fetchError => console.log(fetchError) )
         })
 
-        setTimeout(reject, 3000) // this check the server
+        setTimeout(reject, 3000) // after 3 secs reject
     })
 }

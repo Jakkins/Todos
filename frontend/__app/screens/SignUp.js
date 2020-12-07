@@ -6,7 +6,7 @@ import {
     View, Alert,
     PermissionsAndroid
 } from 'react-native'
-import {LogInCSS, PasswordTextInput} from '../styles/global'
+import {generalCSS, LogInCSS, PasswordTextInput} from '../styles/global'
 import {checkPasswords} from '../myutils/checker'
 
 export default function SignUp({navigation}) {
@@ -34,9 +34,9 @@ export default function SignUp({navigation}) {
             onChangeText={pass2 => setPass2(pass2)}
             />
             <TouchableOpacity 
-            style={LogInCSS.button}
+            style={generalCSS.button}
             onPress={() => sendSignUp(username, pass1, pass2, navigation) } >
-                <Text style={LogInCSS.text}>Send</Text>
+                <Text style={generalCSS.text}>Send</Text>
             </TouchableOpacity>
         </View>
     )
