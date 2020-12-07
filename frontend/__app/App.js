@@ -15,6 +15,7 @@ let serverJson = {
 }
 
 AsyncStorage.setItem('server', JSON.stringify(serverJson))
+AsyncStorage.setItem('logs', ' === start logs ===\n' + serverJson.serverIP + '\n' + serverJson.port + '\n' + serverJson.url)
 
 function App() {
   const [isSignedIn, setSigned] = useState(false)

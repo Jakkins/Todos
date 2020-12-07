@@ -3,6 +3,7 @@ import * as Keychain from 'react-native-keychain'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import NetInfo from '@react-native-community/netinfo'
 import {gettodos} from './myreq'
+import {log} from '../myutils/logger'
 
 export function checkInternetConnection(isSignedIn, setSigned) {
 
@@ -14,13 +15,13 @@ export function checkInternetConnection(isSignedIn, setSigned) {
         NetInfo.fetch().then((state) => {
             if (state.isConnected !== true) 
                 return Alert.alert('You need to be connected to internet');
-            console.log("INTERNET: ON") 
+            log('INTERNET: ON')
         })
 
         // il ping è un ICMP non controlla la porta
         NativeModules.Ping.checkServerStatus(serverJson.serverIP)
-        .then( msg => { console.log("PING: " + msg) })
-        .catch( err => { console.log("PING ERROR: " + err) });
+        .then( msg => { log("PING: " + msg) })
+        .catch( err => { log("PING: " + err) });
         
         checkPortAndValidateToken()
         .then( result => {

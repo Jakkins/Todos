@@ -172,6 +172,7 @@ export const HeaderMenuCSS = StyleSheet.create({
     fontSize: 36,
     color: 'white'
   },
+  /* MENU MODAL */
   modal_background: {
     flex: 1,
     margin: 1
@@ -199,6 +200,11 @@ export const HeaderMenuCSS = StyleSheet.create({
     borderWidth: 0.2,
     width: '80%',
     margin: 1
-  }
+  },
+  log_button: {
+    margin: 10,
+    padding: 10,
+    backgroundColor: 'black',
+  },
  
 })
