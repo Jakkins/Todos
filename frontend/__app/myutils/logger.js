@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-export function log(str) {
+export function LOG(str) {
 	console.log(str)
 	AsyncStorage.getItem('logs')
 	.then((string) => {

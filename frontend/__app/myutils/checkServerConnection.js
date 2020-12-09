@@ -3,7 +3,7 @@ import * as Keychain from 'react-native-keychain'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import NetInfo from '@react-native-community/netinfo'
 import {gettodos} from './myreq'
-import {log} from '../myutils/logger'
+import {LOG} from '../myutils/logger'
 
 export function checkInternetConnection(isSignedIn, setSigned) {
 
@@ -13,15 +13,14 @@ export function checkInternetConnection(isSignedIn, setSigned) {
 
         // Check internet connection
         NetInfo.fetch().then((state) => {
-            if (state.isConnected !== true) 
-                return Alert.alert('You need to be connected to internet');
-            log('INTERNET: ON')
+            if (state.isConnected !== true) return Alert.alert('You need to be connected to internet');
+            LOG('INTERNET: ON')
         })
 
-        // il ping è un ICMP non controlla la porta
+        // ping use ICMP it doen't check the port
         NativeModules.Ping.checkServerStatus(serverJson.serverIP)
-        .then( msg => { log("PING: " + msg) })
-        .catch( err => { log("PING: " + err) });
+        .then( msg => { LOG("PING: " + msg) })
+        .catch( err => { LOG("PING: " + err) });
         
         checkPortAndValidateToken()
         .then( result => {
@@ -52,7 +51,7 @@ function checkPortAndValidateToken() {
                     resolve('invalid')
                 else resolve('valid')
             })
-            .catch( fetchError => console.log(fetchError) )
+            .catch( fetchError => LOG(fetchError) )
         })
 
         setTimeout(reject, 3000) // after 3 secs reject
