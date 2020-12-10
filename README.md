@@ -18,14 +18,14 @@ $ launch.sh
 
 ## Packages
 
-| Package | Usage |
-| ------------- | ------------- |
-| @react-native-async-storage/async-storage | to save in a file server's configurations |
-| @react-navigation/native | NavigationContainer |
+| Package | Usage | Source |
+| ------------- | ------------- | ------------- |
+| @react-native-async-storage/async-storage | to save in a file server's configurations | [source](https://react-native-async-storage.github.io/async-storage/docs/install/) |
+| @react-navigation/native | NavigationContainer | [source](https://reactnavigation.org/docs/getting-started) |
 | import {NativeModules} from 'react-native' | I used one NativeModules to ping the server and see his status |
-| react-native-keychain | to encrypt and save username and token |
-| @react-native-community/netinfo | to check internet connection |
-| @react-navigation/stack | to manage the navigation on the app |
+| react-native-keychain | to encrypt and save username and token | [source](https://www.npmjs.com/package/react-native-keychain) |
+| @react-native-community/netinfo | to check internet connection | [source](https://www.npmjs.com/package/@react-native-community/netinfo) |
+| @react-navigation/stack | to manage the navigation on the app |[source](https://reactnavigation.org/docs/stack-navigator/) |
 
 React Navigation basic installations
 ```bash
