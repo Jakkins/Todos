@@ -1,4 +1,10 @@
-<h1 align="center">TodosSinglePage + SSL</h1>
+<h1 align="center">Todos + SSL</h1>
+
+- [Launcher](#launcher)
+- [Packages](#packages)
+- [Install server certificate on Android](#install-server-certificate-on-android)
+- [Create APK](#create-apk)
+- [Example to ask permission](#example-to-ask-permission)
 
 | Layer | Technology |
 | ------------- | ------------- |
@@ -27,13 +33,17 @@ $ launch.sh
 | @react-native-community/netinfo | to check internet connection | [source](https://www.npmjs.com/package/@react-native-community/netinfo) |
 | @react-navigation/stack | to manage the navigation on the app |[source](https://reactnavigation.org/docs/stack-navigator/) |
 
-React Navigation basic installations
+## Install server certificate on Android
+
+[start](https://github.com/Jakkins/NodeJS_for_newbie/tree/master/NodeJS2%20-%20Server/SimpleSSLServer)
+[one-self-signed-cert-to-rule-them-all-chrome-android-and-ios111](https://stackoverflow.com/questions/57565665/one-self-signed-cert-to-rule-them-all-chrome-android-and-ios)
+
+## Create APK
+
+assembleRelease = bundleRelease + generate apk
+
 ```bash
-npm i --save react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
-```
-Other Packages
-```bash
-npm i --save @react-native-async-storage/async-storage @react-navigation/native react-native-keychain @react-native-community/netinfo @react-navigation/stack
+cd android/gradlew assembleRelease
 ```
 
 ## Example to ask permission

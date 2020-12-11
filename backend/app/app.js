@@ -22,11 +22,12 @@ mongoose.connect('mongodb://localhost/db', {
 })
 mongoose.connection.on('connected', () => { 
     console.log('Connected to MongoDB @ 27017'); 
-}); 
+});
 
 // ----- PARSER -----
 // the request will be parsed here
 // with this conf every request will be parsed in a JSON
+
 app.use(parser.urlencoded({ extended: true }))
 app.use(parser.json())
 
