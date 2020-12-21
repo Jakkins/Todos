@@ -21,7 +21,7 @@ const myutils = require('../myutils')
     if the user share the JWT all people can use it to get his datas
 
 */
-const pub = fs.readFileSync('./keys/pub.pem')
+const pub = fs.readFileSync('./ssl/pub.pem')
 module.exports = (req, res, next) => {
     try {
         //console.log(req.headers)
@@ -30,7 +30,7 @@ module.exports = (req, res, next) => {
         next()
     }
     catch (err) {
-        console.log('AUTH ERROR: ' + req.headers.username + " - " + err.message)
+        console.log('AUTH ERROR: ' + err.message + ' (' + 'user: ' + req.headers.username + ')')
         return myutils.message(res, 500, 'invalid or expired token')
     }
 }

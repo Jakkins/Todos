@@ -27,7 +27,6 @@ mongoose.connection.on('connected', () => {
 // ----- PARSER -----
 // the request will be parsed here
 // with this conf every request will be parsed in a JSON
-
 app.use(parser.urlencoded({ extended: true }))
 app.use(parser.json())
 
